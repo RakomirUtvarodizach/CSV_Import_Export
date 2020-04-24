@@ -27,6 +27,8 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		boolean yesno = true;
+		String outputFile = "";
+		boolean result = false;
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("Welcome to the testing part of the CSV Import Export app!\n"
 				+ "Beneath you will find your choices along with a corresponding number.\n");
@@ -52,18 +54,24 @@ public class Main {
 					}
 					
 //					Writing part ->
-					String outputFile = OUTPUT_PATH + "people_output.csv";
-					boolean result = CSVWriter.writeCSV(people,outputFile);
+					outputFile = OUTPUT_PATH + "people_output.csv";
+					result = CSVWriter.writeCSV(people,outputFile);
 					System.out.println("[M] CSVWriter result: " + result);
 					break;
 				
 				case 1:
-					List<Animal> someAnimals = new ArrayList<Animal>();
+					List<Animal> animals = new ArrayList<Animal>();
 					System.out.println("[M] Reading animals from file.. ");
-					someAnimals = CSVReader.readCSV(Animal.class, INPUT_PATH + "animals.csv");
-					for (Animal animal : someAnimals) {
+					animals = CSVReader.readCSV(Animal.class, INPUT_PATH + "animals.csv");
+					for (Animal animal : animals) {
 						System.out.println("[M] " + animal.toString());
 					}
+					
+
+//					Writing part ->
+					outputFile = OUTPUT_PATH + "animals_output.csv";
+					result = CSVWriter.writeCSV(animals,outputFile);
+					System.out.println("[M] CSVWriter result: " + result);
 					break;
 					
 				default:
